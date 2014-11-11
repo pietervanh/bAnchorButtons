@@ -7,7 +7,7 @@
     "author": "burntcustard, proeleert, cptconundrum",
     "version": "1.8",
     "build": "74525",
-    "date": "2014/03/23",
+    "date": "2014/11/11",
     "signature": "not yet implemented",
     "forum": "https://forums.uberent.com/threads/rel-anchor-buttons-v1-0-57703.54563/",
     "category": [
@@ -18,7 +18,7 @@
     "icon": "http://pamods.github.io/icons/bAnchorButtons.png",
     "priority": 100,
     "scenes": {
-      "live_game": [
+      "Live_Game_FloatZone": [
           "coui://ui/mods/bAnchorButtons/live_game/bAnchorButtons.css",
           "coui://ui/mods/bAnchorButtons/live_game/bAnchorButtons.js"
       ],

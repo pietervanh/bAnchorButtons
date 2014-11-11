@@ -1,4 +1,5 @@
-// Code needs reworking to fit "bCameraAnchorButtons" type style better 
+// Code needs reworking to fit "bCameraAnchorButtons" type style better
+console.log("Initializing Anchor Buttons");
 model.bAnchorButtons_cameraAnchors = ko.observableArray([ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false)]);
 
 var original_api_camera_captureAnchor = api.camera.captureAnchor;
@@ -28,27 +29,23 @@ api.select.captureGroup = function (anchorIndex) {
 function bAnchorButtons_unitAnchor_button_active(anchorIndex) {
 	return model.bAnchorButtons_unitAnchors()[anchorIndex]() ? "anchor_active" : "";
 }
-//////////////
 
-
-//load html dynamically
-function loadAnchorHtmlTemplate(element, url) {
-    element.load(url, function () {
-        console.log("Loading html " + url);
-        ko.applyBindings(model, element.get(0));
-    });
-}
-
-var settings = decode(localStorage.settings);
+//var settings = decode(localStorage.settings);
 
 //debugger;
+/*
 model.bCameraAnchorButtonsAmount = ko.observable(parseInt(settings.bAnchorButtonsAmount));
 model.bUnitAnchorButtonsAmount = ko.observable(parseInt(settings.bAnchorButtonsUnitsAmount));
 model.bRightAnchorButtons = ko.observable(settings.bAnchorButtonsRight);
+*/
+model.bCameraAnchorButtonsAmount = 4;
+model.bUnitAnchorButtonsAmount = 4;
+model.bRightAnchorButtons = 0;
 //forgetFramePosition('bAnchorButtons_info_frame');
 
 model.bAnchorButtonsFlat = ko.computed(function () {
-    if (settings.bAnchorButtonsStyle == "FLAT") {
+    //if (settings.bAnchorButtonsStyle == "FLAT") {
+		if (1===1) {
         return true;
     }
     else {
@@ -57,7 +54,8 @@ model.bAnchorButtonsFlat = ko.computed(function () {
 });
 
 model.bAnchorButtonsAngle = ko.computed(function () {
-    if (settings.bAnchorButtonsStyle == "ANGLE") {
+    //if (settings.bAnchorButtonsStyle == "ANGLE") {
+		if(1===1){
         return true;
     }
     else {
@@ -118,7 +116,13 @@ model.bIsPoleLockOn = ko.computed(function () {
 		//engine.call('set_camera_pole_lock','on');
 		return true;
 	}
-});	
+});
 
 createFloatingFrame('bAnchorButtons_info_frame', 1, 70, {'offset': 'topCenter', 'top':42});
-loadAnchorHtmlTemplate($('#bAnchorButtons_info_frame_content'), 'coui://ui/mods/bAnchorButtons/live_game/bAnchorButtons.html');
+$('#bAnchorButtons_info_frame_content').append(
+	        $.ajax({
+            type: "GET",
+            url: 'coui://ui/mods/bAnchorButtons/live_game/bAnchorButtons.html',
+            async: false
+        }).responseText
+);
