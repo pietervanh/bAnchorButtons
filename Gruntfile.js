@@ -13,7 +13,7 @@ module.exports = function(grunt) {
       src: ['../<%= target %>/*/*/*/*','../<%= target %>/*/*/*','../<%= target %>/*/*','../<%= target %>/*']
     },
     jshint: {
-      files:['Gruntfile.js','ui/mods/bAnchorButtons/global_mod_list/*.js','ui/mods/bAnchorButtons/live_game/*.js','ui/mods/bAnchorButtons/settings/*.js'],
+      files:['Gruntfile.js','ui/mods/bAnchorButtons/live_game/*.js','ui/mods/bAnchorButtons/settings/*.js'],
       options: {
         globals: {
           jquery: true,

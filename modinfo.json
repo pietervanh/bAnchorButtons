@@ -18,15 +18,12 @@
     "icon": "http://pamods.github.io/icons/bAnchorButtons.png",
     "priority": 100,
     "scenes": {
-      "Live_Game_FloatZone": [
+      "LiveGame_FloatZone": [
           "coui://ui/mods/bAnchorButtons/live_game/bAnchorButtons.css",
           "coui://ui/mods/bAnchorButtons/live_game/bAnchorButtons.js"
       ],
       "settings": [
           "coui://ui/mods/bAnchorButtons/settings/bAnchorButtons_Settings.js"
-      ],
-      "global_mod_list": [
-          "coui://ui/mods/bAnchorButtons/global_mod_list/bAnchorButtons_Global.js"
       ]
     },
     "enabled": true,

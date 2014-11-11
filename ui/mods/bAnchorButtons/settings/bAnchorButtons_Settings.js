@@ -1,6 +1,39 @@
-/* model.addSetting_DropDown('Style','bAnchorButtonsStyle','UI',["FLAT","ANGLE"],0,'Anchor Buttons');
-model.addSetting_Slider('Number of Anchor Buttons','bAnchorButtonsAmount','UI',1,8,3,'Anchor Buttons');
-model.addSetting_DropDown('Right Side Function','bAnchorButtonsRight','UI',["OFF","UNIT GROUPS","NORTH"],0,'Anchor Buttons');
-model.addSetting_Slider('Number of Unit Group Buttons.','bAnchorButtonsUnitsAmount','UI',1,8,3,'Anchor Buttons');
-model.registerFrameSetting('bAnchorButtons_info_frame', 'Anchor Buttons', true);
-*/
+(function () {
+    _.extend(api.settings.definitions.ui.settings, {
+        bAnchorButtonsRightSideFunction: {
+            title: 'Right side function',
+            type: 'select',
+            default: 'ALL',
+            options: ['OFF','UNIT GROUPS','NORTH','POLE LOCK','ALL']
+        },
+        bAnchorButtonsCameraAmount: {
+            title: 'Camera Anchor Buttons',
+            type: 'slider',
+            options:{
+                min:1,
+                max:9,
+                step:1
+            },
+            default: 4
+        },
+        bAnchorButtonsUnitAmount: {
+            title: 'Unit Anchor Buttons',
+            type: 'slider',
+            options:{
+                min:1,
+                max:9,
+                step:1
+            },
+            default: 4
+        }
+      });
+
+      $(".option-list.ui .form-group").append(
+          $.ajax({
+              type: "GET",
+              url: 'coui://ui/mods/bAnchorButtons/settings/bAnchorButtons_ui_settings.html',
+              async: false
+          }).responseText
+      );
+      console.log("bAnchorButtons Settings loaded");
+})();

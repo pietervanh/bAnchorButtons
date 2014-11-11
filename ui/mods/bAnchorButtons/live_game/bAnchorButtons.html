@@ -1,106 +1,78 @@
 <!-- ANCHOR BUTTONS -->
 <div class="div_anchor_buttons">
-	<table style="width:100%">
-		<tbody>
-			<tr>
-				<td style="width: 50%; text-align: right;">
-				<!-- LEFT SIDE ITEMS -->
-					<div class="div_anchor_bar_left" data-bind="visible: model.bCameraAnchorButtonsVisible">
-						<div class="div_anchor_bar_cont">
-							<table>
-								<tbody>
-									<tr>					
-										<td>
-											<div class="div_anchor_cont camera"></div>
-										</td>
-										<!-- ko foreach: bCameraAnchorButtonsArr -->
-										<td>
-											<div class="div_anchor_cont">
-												<a href="#" class="anchor"
-													data-bind="click: function () { api.camera.recallAnchor($data); api.camera.captureAnchor($data); },
-													event: { contextmenu: function () { api.camera.captureAnchor($data); api.audio.playSound('/SE/UI/UI_Click')} },
-													attr: { 'class': 'anchor ' + bAnchorButtons_cameraAnchor_button_active($data) },
-													click_sound: 'default', rollover_sound: 'default'">
-													<span class="anchor_text" data-bind="text: $data"></span>
-												</a>
-											</div>
-										</td>
-										<!-- /ko -->
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!--<div class="div_anchor_bar_left" data-bind="visible: !model.bCameraAnchorButtonsVisible">
-						<div class="div_anchor_bar_cont">
+	<!-- CAMERA ANCHORS -->
+	<div class="div_anchor_bar_left" data-bind="visible: model.bCameraAnchorButtonsVisible">
+		<div class="div_anchor_bar_cont">
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<div class="div_anchor_cont camera"></div>
+						</td>
+						<!-- ko foreach: bCameraAnchorButtonsArr -->
+						<td>
 							<div class="div_anchor_cont">
-							</div>
-						</div>
-					</div>-->										
-				<!-- -->
-				</td>
-				<td style="width: 50%; text-align: left;">
-				<!-- RIGHT SIDE ITEMS -->
-					<div class="div_anchor_bar_right" data-bind="visible: model.bUnitAnchorButtonsVisible">
-						<div class="div_anchor_bar_cont">
-							<table>
-								<tbody>
-									<tr>
-										<!-- ko foreach: bUnitAnchorButtonsArr -->
-										<td>
-											<div class="div_anchor_cont">
-												<a href="#" class="anchor"
-													data-bind="click: function() { api.select.recallGroup($data); api.camera.track(true); api.select.captureGroup($data)},
-													event: { contextmenu: function () { api.select.captureGroup($data); api.audio.playSound('/SE/UI/UI_Click')} },
-													attr: { 'class': 'anchor ' + bAnchorButtons_unitAnchor_button_active($data) },
-													click_sound: 'default', rollover_sound: 'default'">
-													<span class="anchor_text" data-bind="text: $data"></span>
-												</a>
-											</div>
-										</td>
-										<!-- /ko -->
-										<td>
-											<div class="div_anchor_cont units"></div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!-- Button to snap camera to pointing North (n-key) -->
-					<div class="div_anchor_bar_right" data-bind="visible: model.bNorthAnchorButtonVisible">
-						<div class="div_anchor_bar_cont">
-							<div class="div_anchor_cont">
-								<a href="#" class="anchor anchor_active"
-									data-bind="click: function() { model.alignCameraToPole() },
+								<a href="#" class="anchor"
+									data-bind="click: function () { api.camera.recallAnchor($data); api.camera.captureAnchor($data); },
+									event: { contextmenu: function () { api.camera.captureAnchor($data); api.audio.playSound('/SE/UI/UI_Click')} },
+									attr: { 'class': 'anchor ' + bAnchorButtons_cameraAnchor_button_active($data) },
 									click_sound: 'default', rollover_sound: 'default'">
-									<span class="north_text">N</span> 
+									<span class="anchor_text" data-bind="text: $data"></span>
 								</a>
 							</div>
-						</div>
-					</div>
-					<!-- -->
-					<div class="div_anchor_bar_right" data-bind="visible: model.bPoleLockAnchorButtonVisible">
-					<!-- Pole Lock toggle button. Currently can turn pole lock on, but not back off. "settings.camera_pole_lock == 'on'" doesn't work -->
-						<div class="div_anchor_bar_cont">
+						</td>
+						<!-- /ko -->
+						<!-- ALIGN NORTH -->
+						<td data-bind="visible: model.bNorthAnchorButtonVisible">
+							<div class="div_anchor_cont">
+								<a href="#" class="anchor"
+									data-bind="click: function() { model.alignCameraToPole() },
+									click_sound: 'default', rollover_sound: 'default'">
+									<span class="north_text">N</span>
+								</a>
+							</div>
+						</td>
+						<!-- POLE LOCK-->
+						<td data-bind="visible: model.bPoleLockAnchorButtonVisible">
 							<div class="div_anchor_cont">
 								<a href="#" class="anchor"
 									data-bind="click: function() {
-										if (settings.camera_pole_lock == 'on') {
-											engine.call('set_camera_pole_lock','off')
-										} else {
-											engine.call('set_camera_pole_lock','on')
-										}
+										model.polelockToggle()
 									},
+									attr: { 'class': 'anchor ' + bAnchorButtons_polelock_active() },
 									click_sound: 'default', rollover_sound: 'default'">
-									<span class="north_text">PL</span> 
+									<span class="north_text">PL</span>
 								</a>
 							</div>
-						</div>
-					<!-- -->
-					</div>						
-				</td>
-			</tr>
-		<tbody>
-	<table>
+						</td>
+						<!-- UNIT GROUP ANCHORS -->
+						<td data-bind="visible: model.bUnitAnchorButtonsVisible">
+								<table>
+									<tbody>
+										<tr>
+											<!-- ko foreach: bUnitAnchorButtonsArr -->
+											<td>
+												<div class="div_anchor_cont">
+													<a href="#" class="anchor"
+														data-bind="click: function() { api.select.recallGroup($data); api.camera.track(true); api.select.captureGroup($data)},
+														event: { contextmenu: function () { api.select.captureGroup($data); api.audio.playSound('/SE/UI/UI_Click')} },
+														attr: { 'class': 'anchor ' + bAnchorButtons_unitAnchor_button_active($data) },
+														click_sound: 'default', rollover_sound: 'default'">
+														<span class="anchor_text" data-bind="text: $data"></span>
+													</a>
+												</div>
+											</td>
+											<!-- /ko -->
+											<td>
+												<div class="div_anchor_cont units"></div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
