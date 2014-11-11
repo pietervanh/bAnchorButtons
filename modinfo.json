@@ -1,0 +1,36 @@
+{
+    "context": "client",
+    "identifier": "com.pa.burntcustard.bAnchorButtons",
+    "display_name": "Anchor Buttons",
+    "description": "Click once to set camera anchor, and again to snap back there.",
+    "description_nl": "Sla Cameraposities op met een knop en klik nog eens om terug te keren.",
+    "author": "burntcustard, proeleert, cptconundrum",
+    "version": "1.8",
+    "build": "74525",
+    "date": "2014/03/23",
+    "signature": "not yet implemented",
+    "forum": "https://forums.uberent.com/threads/rel-anchor-buttons-v1-0-57703.54563/",
+    "category": [
+        "in-game",
+        "ui"
+    ],
+    "id": "bAnchorButtons",
+    "icon": "http://pamods.github.io/icons/bAnchorButtons.png",
+    "priority": 100,
+    "scenes": {
+      "live_game": [
+          "coui://ui/mods/bAnchorButtons/live_game/bAnchorButtons.css",
+          "coui://ui/mods/bAnchorButtons/live_game/bAnchorButtons.js"
+      ],
+      "settings": [
+          "coui://ui/mods/bAnchorButtons/settings/bAnchorButtons_Settings.js"
+      ],
+      "global_mod_list": [
+          "coui://ui/mods/bAnchorButtons/global_mod_list/bAnchorButtons_Global.js"
+      ]
+    },
+    "enabled": true,
+    "dependencies": [
+        "com.pa.raevn.rfloatframe"
+    ]
+}
