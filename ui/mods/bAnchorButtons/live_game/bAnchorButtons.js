@@ -1,8 +1,8 @@
-// Code needs reworking to fit "bCameraAnchorButtons" type style better
 console.log("Initializing Anchor Buttons");
 //forgetFramePosition('bAnchorButtons_info_frame');
 
-model.bAnchorButtons_cameraAnchors = ko.observableArray([ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false)]);
+model.bCameraAnchorButtonsArr = ko.observableArray([]);
+model.bAnchorButtons_cameraAnchors = ko.observableArray([ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false)]);
 var original_api_camera_captureAnchor = api.camera.captureAnchor;
 
 api.camera.captureAnchor = function (anchorIndex) {
@@ -16,7 +16,8 @@ function bAnchorButtons_cameraAnchor_button_active(anchorIndex) {
   return model.bAnchorButtons_cameraAnchors()[anchorIndex]() ? "anchor_active" : "";
 }
 
-model.bAnchorButtons_unitAnchors = ko.observableArray([ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false)]);
+model.bUnitAnchorButtonsArr = ko.observableArray([]);
+model.bAnchorButtons_unitAnchors = ko.observableArray([ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false), ko.observable(false)]);
 
 var original_api_select_captureGroup = api.select.captureGroup;
 
@@ -36,39 +37,40 @@ model.bUnitAnchorButtonsAmount = ko.observable(api.settings.isSet('ui','bAnchorB
 model.bRightAnchorButtons = ko.observable(api.settings.isSet('ui','bAnchorButtonsRightSideFunction',true) || 'NORTH');
 
 handlers['settings.exit'] = function(){
-  console.log("Settings Closed Reload Anchorbuttons");
   model.bCameraAnchorButtonsAmount(api.settings.isSet('ui','bAnchorButtonsCameraAmount',true) || 4);
   model.bUnitAnchorButtonsAmount(api.settings.isSet('ui','bAnchorButtonsUnitAmount',true) || 4);
-  model.bRightAnchorButtons(api.settings.isSet('ui','bAnchorButtonsRightSideFunction',true) || 'NORTH');
+  model.bRightAnchorButtons(api.settings.isSet('ui','bAnchorButtonsRightSideFunction',true) || 'ALL');
+  console.log("Settings Closed Reload Anchorbuttons");
 };
+
 
 model.bCameraAnchorButtonsVisible = ko.computed(function () {
   if (model.bCameraAnchorButtonsAmount() > 0) {
-    model.bCameraAnchorButtonsArr = ko.observableArray([]);
+    model.bCameraAnchorButtonsArr([]);
     for (var i = 0; i < model.bCameraAnchorButtonsAmount(); i++)	{
-      model.bCameraAnchorButtonsArr().push(i+1);
+      model.bCameraAnchorButtonsArr.push(i+1);
     }
     return true;
   }
   else {
-    model.bCameraAnchorButtonsArr = ko.observableArray([]);
+    model.bCameraAnchorButtonsArr([]);
     return false;
   }
-});
+}).extend({ throttle: 500 });
 
 model.bUnitAnchorButtonsVisible = ko.computed(function () {
   if (model.bRightAnchorButtons() === "UNIT GROUPS" || model.bRightAnchorButtons() === "ALL") {
-    model.bUnitAnchorButtonsArr = ko.observableArray([]);
+    model.bUnitAnchorButtonsArr([]);
     for (var i = 0; i < model.bUnitAnchorButtonsAmount(); i++)	{
-      model.bUnitAnchorButtonsArr().push(i+1);
+      model.bUnitAnchorButtonsArr.push(i+1);
     }
     return true;
   }
   else {
-    model.bUnitAnchorButtonsArr = ko.observableArray([]);
+    model.bUnitAnchorButtonsArr([]);
     return false;
   }
-});
+}).extend({ throttle: 500 });
 
 model.bNorthAnchorButtonVisible = ko.computed(function () {
   if (model.bRightAnchorButtons() === "NORTH" || model.bRightAnchorButtons() === "ALL") {
@@ -140,3 +142,5 @@ $('#bAnchorButtons_info_frame_content').append(
     async: false
   }).responseText
 );
+
+console.log("Initialized Anchor Buttons");

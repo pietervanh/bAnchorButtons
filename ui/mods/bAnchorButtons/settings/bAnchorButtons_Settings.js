@@ -11,7 +11,7 @@
             type: 'slider',
             options:{
                 min:1,
-                max:9,
+                max:10,
                 step:1
             },
             default: 4
@@ -21,7 +21,7 @@
             type: 'slider',
             options:{
                 min:1,
-                max:9,
+                max:10,
                 step:1
             },
             default: 4
