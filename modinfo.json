@@ -5,7 +5,7 @@
     "description": "Click once to set camera anchor, and again to snap back there.",
     "description_nl": "Sla Cameraposities op met een knop en klik nog eens om terug te keren.",
     "author": "burntcustard, proeleert, cptconundrum",
-    "version": "1.9",
+    "version": "1.10",
     "build": "74525",
     "date": "2014/11/11",
     "signature": "not yet implemented",

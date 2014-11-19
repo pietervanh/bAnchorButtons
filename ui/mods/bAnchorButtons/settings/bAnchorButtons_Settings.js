@@ -35,5 +35,32 @@
               async: false
           }).responseText
       );
+
+      model.anchorbuttonsLocked = ko.observable(localStorage.frames_bAnchorButtons_info_frame_lockStatus ? decode(localStorage.frames_bAnchorButtons_info_frame_lockStatus) : false);
+
+      model.anchorbuttonslocktoggle = function(){
+
+        if(model.anchorbuttonsLocked()){
+          console.log('unlocking anchorbuttons');
+          unlockFrame('bAnchorButtons_info_frame');
+          model.hotbuildPreviewLocked(false);
+        }
+        else{
+          console.log('locking anchorbuttons');
+          lockFrame('bAnchorButtons_info_frame');
+          model.anchorbuttonsLocked(true);
+        }
+      };
+
+      model.anchorbuttonsLockstate = ko.computed(function () {
+            if(model.anchorbuttonsLocked()){
+              return 'UNLOCK ANCHORBUTTONS';
+            }
+            else{
+              return 'LOCK ANCHORBUTTONS';
+            }
+      },true);
+
+
       console.log("bAnchorButtons Settings loaded");
 })();

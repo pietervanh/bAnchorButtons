@@ -3,4 +3,9 @@
     <div class="option" data-bind="template: { name: 'setting-template', data: $root.settingsItemMap()['ui.bAnchorButtonsRightSideFunction'] }"></div>
     <div class="option slider" data-bind="template: { name: 'setting-template', data: $root.settingsItemMap()['ui.bAnchorButtonsCameraAmount'] }"></div>
 		<div class="option slider" data-bind="template: { name: 'setting-template', data: $root.settingsItemMap()['ui.bAnchorButtonsUnitAmount'] }"></div>
+		<div class="option">
+			<div class="btn_std" id="lockanchorbuttons" data-bind="click:$root.anchorbuttonslocktoggle, click_sound:'default', rollover_sound:'default'">
+				<div class="btn_lbl" style="" data-bind="text: $root.anchorbuttonsLockstate"></div>
+			</div>
+		</div>
 </div>
