@@ -92,6 +92,11 @@ model.bPoleLockAnchorButtonVisible = ko.computed(function () {
 
 //CHECK POLE LOCK STATUS ON LOAD.
 var allSettings = decode(localStorage[localStorage.uberName + ".paSettings"]);
+if(allSettings.camera === undefined)
+{
+  allSettings.camera = {};
+  allSettings.camera.pole_lock = undefined;
+}
 var currentPoleLock = allSettings.camera.pole_lock;
 if (currentPoleLock === undefined)
 {
