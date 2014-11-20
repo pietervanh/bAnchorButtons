@@ -105,6 +105,9 @@ else
 model.polelockToggle = function () {
   console.log("PoleLock");
   var allSettings = decode(localStorage[localStorage.uberName + ".paSettings"]);
+  if(allSettings.camera === undefined){
+    allSettings.camera = {};
+  }
   var currentPoleLock = allSettings.camera.pole_lock;
   var nextSetting = "";
   if (currentPoleLock === undefined) {
