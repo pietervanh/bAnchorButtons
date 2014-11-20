@@ -43,7 +43,7 @@
         if(model.anchorbuttonsLocked()){
           console.log('unlocking anchorbuttons');
           unlockFrame('bAnchorButtons_info_frame');
-          model.hotbuildPreviewLocked(false);
+          model.anchorbuttonsLocked(false);
         }
         else{
           console.log('locking anchorbuttons');
